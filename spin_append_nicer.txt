@@ -1,0 +1,55 @@
+#!/bin/bash
+
+echo "============================================"
+echo "[INFO] Starting pulse profile generation..."
+echo "Time: $(date)"
+echo "--------------------------------------------"
+
+# Make sure the Python script exists
+PYTHON_SCRIPT="zn_spin_append_nicer.py"
+if [[ ! -f "$PYTHON_SCRIPT" ]]; then
+    echo "[✗] $PYTHON_SCRIPT not found!"
+    exit 1
+fi
+
+# Loop over RXTE-like directories
+for dir in [0-9]*; do
+    pca_dir="$dir/xti/event_cl/"
+    [[ -d "$pca_dir" ]] || continue
+
+    echo "[→] Looking in $pca_dir"
+    evt_files=("$pca_dir"/cl_bary.evt)
+
+    # Check if there are any matching files
+    if [[ ${#evt_files[@]} -eq 0 ]]; then
+        echo "[!] No _filtered.evt files in $pca_dir"
+        continue
+    fi
+
+    for evt_file in "${evt_files[@]}"; do
+        if [[ -f "$evt_file" ]]; then
+            base_evt_name=$(basename "$evt_file")
+
+            # Skip po_cl_filtered.evt
+            if [[ "$base_evt_name" == "po_cl_filtered.evt" ]]; then
+                echo "[SKIP] Skipping $evt_file (po_cl_filtered.evt)"
+                continue
+            fi
+
+            echo "[INFO] Processing: $evt_file"
+
+            # Try running the python script
+            python3 "$PYTHON_SCRIPT" "$evt_file"
+            exit_code=$?
+
+            if [[ $exit_code -ne 0 ]]; then
+                echo "[!] Error occurred, trying again in fresh environment..."
+                python "$PYTHON_SCRIPT" "$evt_file"
+            fi
+        fi
+    done
+    echo "--------------------------------------------"
+done
+
+echo "[✓] All processing completed at: $(date)"
+echo "============================================"

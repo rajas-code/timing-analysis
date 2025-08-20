@@ -1,0 +1,16 @@
+For linking a new folder to git 
+
+ssh-keygen -t ed25519 -C "rajapandi181001@gmail.com"
+and then just press enter 
+cat ~/.ssh/id_ed25519.pub
+and copy the SSH key and paste in the github site
+
+after adding the key in the github 
+ssh -T git@github.com
+git remote set-url origin git@github.com:rajas-code/timing-analysis.git
+git add README.md #file name which i want to add in the git repo
+git commit -m "Updated README with new section with a rough details about the files" #For adding commit
+git push
+
+the changes will be reflected in the git repo
+
