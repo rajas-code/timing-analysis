@@ -28,8 +28,8 @@ The author does not claim originality for the core functionalities implemented i
 - RXTE-PCA data from HEASARC
 
 # About the files
-zn_spin_append.py - This is a python script which runs to identify the pulse period(by performing Z_n search from Stingray) in the given event file by dividing the event file into a segemts of 512 seconds 
-spin_append.txt - This is a bash script which identifies all the barry center corrected event file in a particular parent directory and ececutes the zn_spin_append.py python script for all the valid event file 
-pulse_profiles.py - This is a python script which takes the best frequency from the .csv file created by zn_spin_append.py script along with the event fiel and creates a pulse profile by folding all the 512 segments and look for the High significance pulses and store the detaisl about that particular segment in a .csv file 
-pulse_profiles.txt - This is a bash script which identifies all the barry center corrected event file in a particular parent directory and ececutes the pulse_profiles.py python script for all the valid event file 
-high_sigma_plot.py - This is a python script which takes .csv file as the input and then indentifies all the pulse profile and save then in a single pdf file
+- zn_spin_append.py - This is a python script which runs to identify the pulse period(by performing Z_n search from Stingray) in the given event file by dividing the event file into a segemts of 512 seconds 
+- spin_append.txt - This is a bash script which identifies all the barry center corrected event file in a particular parent directory and ececutes the zn_spin_append.py python script for all the valid event file 
+- pulse_profiles.py - This is a python script which takes the best frequency from the .csv file created by zn_spin_append.py script along with the event fiel and creates a pulse profile by folding all the 512 segments and look for the High significance pulses and store the detaisl about that particular segment in a .csv file 
+- pulse_profiles.txt - This is a bash script which identifies all the barry center corrected event file in a particular parent directory and ececutes the pulse_profiles.py python script for all the valid event file 
+- high_sigma_plot.py - This is a python script which takes .csv file as the input and then indentifies all the pulse profile and save then in a single pdf file
