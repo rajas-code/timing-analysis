@@ -25,6 +25,7 @@ The author does not claim originality for the core functionalities implemented i
 # Tested on
 
 - Fedora Linux 42 
+- macOS on Apple M4 chip
 - RXTE-PCA data from HEASARC
 
 # About the files
